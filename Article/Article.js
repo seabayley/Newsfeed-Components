@@ -85,6 +85,21 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Lambda School is the best',
+    date: 'Jan 13th, 2019',
+    firstParagraph: `Lorem ipsum and other filler text. Lorem ipsum and other filler text.Lorem ipsum and other filler text.
+    Lorem ipsum and other filler text. Lorem ipsum and other filler text. Lorem ipsum and other filler text.`,
+
+    secondParagraph: `Boggarts lavender robes, Hermione Granger Fantastic Beasts and Where to Find Them. Bee in your bonnet Hand of Glory elder
+    wand, spectacles House Cup Bertie Bott’s Every Flavor Beans Impedimenta. Stunning spells tap-dancing spider Slytherin’s Heir
+    mewing kittens Remus Lupin. Palominos scarlet train black robes, Metamorphimagus Niffler dead easy second bedroom. Padma
+    and Parvati Sorting Hat Minister of Magic blue turban remember my last. `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -112,3 +127,47 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function createArticle(article) {
+  // Set up initial elements.
+  let wrapper = document.createElement('div');
+  let h2 = document.createElement('h2');
+  let date = document.createElement('p');
+  let p1 = document.createElement('p');
+  let p2 = document.createElement('p');
+  let p3 = document.createElement('p');
+  let span = document.createElement('span');
+
+  // populate elements with classes.
+  wrapper.classList.add('article');
+  date.classList.add('date');
+  span.classList.add('expandButton');
+
+  // populate elements with content
+  h2.textContent = article.title;
+  date.textContent = article.date;
+  p1.textContent = article.firstParagraph;
+  p2.textContent = article.secondParagraph;
+  p3.textContent = article.thirdParagraph;
+  span.textContent = 'Open Me';
+
+  // add event listener
+  span.addEventListener('click', e => {
+    wrapper.classList.toggle('article-open');
+  })
+
+  // organize css structure
+  wrapper.appendChild(h2);
+  wrapper.appendChild(date);
+  wrapper.appendChild(p1);
+  wrapper.appendChild(p2);
+  wrapper.appendChild(p3);
+  wrapper.appendChild(span);
+
+  return wrapper;
+}
+
+articles = document.querySelector('.articles');
+data.forEach(elem => {
+  articles.appendChild(createArticle(elem));
+})
